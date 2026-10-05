@@ -1,1 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>動かして発見する三角比・三角関数</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>動かして発見する三角比・三角関数</h1>
+  <nav role="tablist">
+    <button role="tab" data-tab="1" aria-selected="true">① 三角比を動かす</button>
+    <button role="tab" data-tab="2" aria-selected="false">② 単位円</button>
+    <button role="tab" data-tab="3" aria-selected="false">③ 波をつくる</button>
+  </nav>
+</header>
 
+<main>
+<!-- TAB1 -->
+<section id="tab1" class="stage">
+  <canvas id="c1" tabindex="0" aria-label="直角三角形。頂点をドラッグ、または左右キーで角度を変更"></canvas>
+  <aside>
+    <h2>① 三角比を動かす</h2>
+    <p class="hint">赤い頂点をドラッグ（左右キーでも可）。破線の小さい三角形は基準です。</p>
+    <div id="r1" class="readout"></div>
+    <label>三角形の大きさ <input id="size1" type="range" min="80" max="380" value="260"></label>
+    <button id="reset1">初期状態に戻す</button>
+    <details><summary>問い：三角形を大きくすると三角比は？</summary><p>辺の長さは変わりますが、辺の比は変わりません。同じ角度なら相似なので sinθ・cosθ・tanθ は同じ値です。</p></details>
+  </aside>
+</section>
+
+<!-- TAB2 -->
+<section id="tab2" class="stage" hidden>
+  <canvas id="c2" tabindex="0" aria-label="単位円。点Pをドラッグ、または左右キーで角度を変更"></canvas>
+  <aside>
+    <h2>② 単位円</h2>
+    <div id="r2" class="readout"></div>
+    <fieldset><legend>グラフ</legend>
+      <label><input type="radio" name="mode" value="sin" checked> sinグラフを描く</label>
+      <label><input type="radio" name="mode" value="cos"> cosグラフを描く</label>
+      <label><input type="radio" name="mode" value="none"> 描かない</label>
+    </fieldset>
+    <label><input id="snap" type="checkbox" checked> 特別な角度にスナップ</label>
+    <div class="row">
+      <button id="play2">▶ 再生</button><button id="pause2">⏸ 一時停止</button><button id="reset2">初期状態に戻す</button>
+    </div>
+    <div class="row"><label>角度を入力 θ = <input id="ang" type="number" value="30" step="any"> °</label><button id="go">移動</button></div>
+    <details><summary>問い1：x座標とcosθの関係は？</summary><p>常に等しい（x = cosθ）。単位円では半径が1なので、直角三角形の「隣辺÷斜辺」がそのままx座標になります。</p></details>
+    <details><summary>問い2：y座標とsinθの関係は？</summary><p>常に等しい（y = sinθ）。「対辺÷斜辺」がそのままy座標になります。</p></details>
+    <details><summary>問い3：90°を超えるとsin・cosの符号は？</summary><p>第2象限ではx&lt;0なのでcosθが負、y&gt;0なのでsinθは正。第3象限は両方負、第4象限はcosが正でsinが負になります。</p></details>
+  </aside>
+</section>
+
+<!-- TAB3 -->
+<section id="tab3" class="stage" hidden>
+  <canvas id="c3" aria-label="円運動から波ができる様子"></canvas>
+  <aside>
+    <h2>③ 円の動きから波をつくる</h2>
+    <div id="r3" class="readout"></div>
+    <label>振幅 A <input id="A" type="range" min="0.5" max="2.5" step="0.1" value="1"> <output id="Av"></output></label>
+    <label>周期 T <input id="T" type="range" min="1" max="8" step="0.5" value="4"> <output id="Tv"></output></label>
+    <label>位相 φ(°) <input id="phi" type="range" min="-180" max="180" step="5" value="0"> <output id="phiv"></output></label>
+    <div class="row"><button id="play3">▶ 再生</button><button id="pause3">⏸ 一時停止</button><button id="reset3">初期状態に戻す</button></div>
+    <details><summary>問い4：一定速度で回すとなぜ波になる？</summary><p>点の高さ（y座標）は sin で決まります。角度が一定の割合で増えるので、高さが上下をなめらかに繰り返し、波の形になります。</p></details>
+    <details><summary>問い5：円の大きさ（振幅）を変えると？</summary><p>円の半径Aが大きいほど波の高さも大きくなります。周期は変わりません。</p></details>
+  </aside>
+</section>
+</main>
+<script src="scripts.js"></script>
+</body>
+</html>
